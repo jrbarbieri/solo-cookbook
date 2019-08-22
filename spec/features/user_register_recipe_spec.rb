@@ -47,16 +47,16 @@ feature 'User register a recipe' do
     fill_in 'Tempo de cozimento', with: 30
     fill_in 'Ingredientes', with: 'Farinha e chocolate'
     fill_in 'Modo de Preparo', with: 'Misture tudo'
-    click_on 'Editar'
+    click_on 'Enviar'
 
     # Assert
-    expect(page).to have_css('h1', text: 'Pudim')
+    expect(page).to have_css('h1', text: 'Bolo de Chocolate')
     expect(page).to have_css('li', text: 'Sobremesa')
     expect(page).to have_css('li', text: 'Brasileira')
     expect(page).to have_css('li', text: 'Fácil')
-    expect(page).to have_css('li', text: '60 minutos')
+    expect(page).to have_css('li', text: '30 minutos')
     expect(page).to have_css('h3', text: 'Ingredientes')
-    expect(page).to have_css('p', text: 'Ovo e açucar')
+    expect(page).to have_css('p', text: 'Farinha e chocolate')
     expect(page).to have_css('h3', text: 'Modo de Preparo')
     expect(page).to have_css('p', text: 'Misture tudo')
     expect(page).to have_link('Voltar')
