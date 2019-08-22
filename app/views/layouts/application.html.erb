@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <h1 class="titulo">CookBook</h1>
+    <p align="center">Bem-vindo ao maior livro de receitas online!</p>
+
+    <nav>
+      <%= link_to 'Nova Receita', new_recipe_path %>
+      <% if current_page?(controller: 'recipes', action: 'index') == false %>
+        <%= link_to 'Voltar', root_path, class: 'botao_voltar' %>
+      <% end %>
+    </nav>
+
+    <hr>
+
     <%= yield %>
   </body>
 </html>

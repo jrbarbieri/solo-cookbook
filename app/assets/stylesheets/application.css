@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+
+form {
+
+    display: inline-block;
+    width: 150px;
+}
+
+.titulo {
+	font-family: verdana;
+	text-align: center;
+	letter-spacing: 6px;
+}
+
+.botao_voltar {
+	float: right;
+}
+
+p { font-family: verdana;
+}
+
+a { font-family: verdana;
+  text-decoration: none;
+  padding: 7px;
+  color: black;
+}
+
+a:hover { font-family: verdana;
+  text-decoration: none;
+  background-color: #90ee90;
+  padding: 7px;
+}
+
+body {
+	margin: auto;
+	width: 50%;
+}
