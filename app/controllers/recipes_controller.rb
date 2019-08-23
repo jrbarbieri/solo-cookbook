@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @recipes = Recipe.where('tittle = ?', "#{params[:name]}")
+    @recipes = Recipe.where('tittle LIKE ?', "%#{params[:name]}%")
     if @recipes.empty?
       flash.now[:alert] = 'Nenhuma receita encontrada.'      
     end
