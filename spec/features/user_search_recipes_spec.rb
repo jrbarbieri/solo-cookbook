@@ -21,4 +21,16 @@ feature 'User search for a recipe with exact name' do
     expect(page).to have_css('h1', text: 'Cuzcuz')
     expect(page).not_to have_css('h1', text: 'Macarronada')
   end
+
+  scenario 'search for recipe and dont find it' do
+    # Arrange
+
+    # Act
+    visit root_path
+    fill_in 'Buscar receitas:', with: 'Cuzcuz'
+    click_on 'Buscar'
+
+    # Assert
+    expect(page).to have_content('Nenhuma receita encontrada.')
+  end
 end
