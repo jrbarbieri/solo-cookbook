@@ -32,7 +32,7 @@ feature 'User register recipe type' do
 
   end
 
-  scenario 'blank recipe type register can not be registered' do
+  scenario 'duplicate recipe type register can not be registered' do
     # Arrange
 
     # Act
