@@ -4,7 +4,7 @@ feature 'User visit cookbook' do
   scenario 'and view recipe type' do
     # Arrange
     recipe_type = RecipeType.create!(name: 'Sobremesa')
-    recipe = Recipe.create(tittle: 'Pudim', recipe_type: recipe_type,
+    recipe = Recipe.create!(tittle: 'Pudim', recipe_type: recipe_type,
                            cuisine: 'Brasileira', difficulty: 'Fácil', cook_time: 60,
                            ingredients: 'Ovo e açucar', cook_method: 'Misture tudo')
 
