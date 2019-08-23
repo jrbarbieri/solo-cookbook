@@ -31,6 +31,10 @@ class RecipesController < ApplicationController
     redirect_to @recipes
   end
 
+  def search
+    @recipes = Recipe.where('tittle = ?', "#{params[:name]}")
+  end
+
   private
 
   def set_params

@@ -22,6 +22,12 @@
     </nav>
 
     <hr>
+      <%= form_tag search_recipes_path, method: 'get', class: 'buscar' do %>
+        <%= label_tag(:name, "Buscar receitas:") %>
+        <%= text_field_tag(:name) %>
+        <%= submit_tag("Buscar") %>
+      <% end %>
+    <hr>
     <%= flash[:alert] %>
     <%= flash[:notice] %>
 

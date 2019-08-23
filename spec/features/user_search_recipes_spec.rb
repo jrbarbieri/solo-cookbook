@@ -14,8 +14,8 @@ feature 'User search for a recipe with exact name' do
 
     # Act
     visit root_path
-    fill_in 'Buscar receitas', with: 'Cuzcuz'
-    click_in 'Buscar'
+    fill_in 'Buscar receitas:', with: 'Cuzcuz'
+    click_on 'Buscar'
 
     # Assert
     expect(page).to have_css('h1', text: 'Cuzcuz')

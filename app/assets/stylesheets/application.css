@@ -14,6 +14,27 @@
  *= require_self
  */
 
+ .buscar {
+  display: inline;
+}
+.buscar input[type=text] {
+  font-family: verdana;
+  background-color: gray;
+  transition: background-color .3s ease-in;
+}
+
+.buscar:hover input[type=text] {
+  background-color: white;
+}
+
+.buscar:active input[type=text] {
+  background-color: white;
+}
+
+.buscar:visited input[type=text] {
+  background-color: white;
+}
+
 form {
 
     display: inline-block;
