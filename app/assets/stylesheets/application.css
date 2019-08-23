@@ -17,7 +17,18 @@
 form {
 
     display: inline-block;
-    width: 150px;
+    width: 200px;
+    font-family: verdana;
+}
+
+input[type=text], textarea, input[type=number]  {
+  background-color: lightgreen;
+  width: 400px;
+}
+
+input[type=text]:focus, textarea:focus, input[type=number]:focus  {
+  background-color: green;
+  width: 400px;
 }
 
 .titulo {
@@ -26,23 +37,61 @@ form {
 	letter-spacing: 6px;
 }
 
-.botao_voltar {
-	float: right;
+.botao_voltar { font-family: verdana;
+  text-decoration: none;
+  padding: 4px;
+  color: black;
+  font-weight: bold;
+  transition: all .3s ease-in;
+  float: right;
 }
 
-p { font-family: verdana;
+.botao_voltar:hover { 
+  background-color: green;
+}
+.select_recipe_type {
+  background-color: lightgreen;
+  width: 400px;
 }
 
-a { font-family: verdana;
+.select_recipe_type:focus {
+  background-color: green;
+}
+
+p { 
+  font-family: verdana;
+}
+
+.quadro { 
+  font-family: verdana;
+  background-color: white; 
+  transition: all .3s ease-in;
+  font-weight: none;
+  display: inline-block;
+  margin: 5px;
+  padding: 3px;
+  border: 1px black solid;
+  width: 300px;
+  height: 200px;
+  color: black;
+  text-decoration: none;
+}
+
+.quadro:hover { 
+  background-color: lightgreen; 
+} 
+
+.nav-buttons { 
+  font-family: verdana;
   text-decoration: none;
   padding: 7px;
   color: black;
+  font-weight: bold;
+  transition: all .3s ease-in;
 }
 
-a:hover { font-family: verdana;
-  text-decoration: none;
+.nav-buttons:hover { 
   background-color: #90ee90;
-  padding: 7px;
 }
 
 body {

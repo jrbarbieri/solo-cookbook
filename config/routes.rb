@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'recipes#index'
 
   resources :recipes, only: %i[index show new create update edit]
+  resources :recipe_types, only: %i[show new create]
 end

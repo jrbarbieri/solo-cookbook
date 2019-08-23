@@ -1,24 +1,30 @@
 class RecipesController < ApplicationController
-  def index
-  	@recipes = Recipe.all
-  end
 
-  def show
-  	@recipes = Recipe.find(params[:id])
+  before_action :set_params_id, only: %i[show edit]
+  before_action :load_recipe_type, only: %i[new create edit]
+
+  def index
+    @recipes = Recipe.all
   end
 
   def new
-  	@recipes = Recipe.new
+    @recipes = Recipe.new
   end
+
+  def show; end
 
   def create
-  	@recipes = Recipe.create(set_params)
-  	redirect_to @recipes
+    @recipes = Recipe.create(set_params)
+    if @recipes.save
+      flash[:notice] = 'Receita criada com sucesso!'
+      redirect_to @recipes
+    else
+      flash.now[:alert] = 'Receita não cadastrada.'
+      render :new
+    end
   end
 
-  def edit
-    @recipes = Recipe.find(params[:id])
-  end
+  def edit; end
 
   def update
     @recipes = Recipe.update(set_params)
@@ -28,7 +34,16 @@ class RecipesController < ApplicationController
   private
 
   def set_params
-  	params.require(:recipe).permit(:tittle, :recipe_type, :cuisine,
+  	params.require(:recipe).permit(:tittle, :recipe_type_id, :cuisine,
   								   :difficulty, :cook_time, :ingredients, :cook_method)
   end
+
+  def set_params_id
+    @recipes = Recipe.find(params[:id])
+  end
+
+  def load_recipe_type
+    @recipe_types = RecipeType.all
+  end
+
 end

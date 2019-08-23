@@ -1,9 +1,15 @@
+<% if @recipes.errors.any? %>
+    <% @recipes.errors.full_messages.each do |msg| %>
+        <br><%= msg %>
+    <% end %>
+<% end %>
+
 <%= form_for @recipes do |f| %>
   
   <%= f.label :tittle, 'Nome' %>
   <%= f.text_field :tittle %> 
-  <%= f.label :recipe_type, 'Tipo de receita' %>
-  <%= f.text_field :recipe_type %>
+  <%= f.label :recipe_type_id, 'Tipo de receita' %>
+  <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name, {prompt: "Selecione..."}, {class: "select_recipe_type"} %>
   <%= f.label :cuisine, 'Cozinha' %>
   <%= f.text_field :cuisine %>
   <%= f.label :difficulty, 'Dificuldade' %>
