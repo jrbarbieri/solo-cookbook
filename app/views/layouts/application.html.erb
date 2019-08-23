@@ -14,6 +14,7 @@
     <p align="center">Bem-vindo ao maior livro de receitas online!</p>
     <br>
     <nav>
+      <%= link_to 'Entrar', new_user_session_path, class: 'nav-buttons' %>
       <%= link_to 'Nova Receita', new_recipe_path, class: 'nav-buttons' %>
       <%= link_to 'Novo Tipo de Receita', new_recipe_type_path, class: 'nav-buttons' %>
       <% if current_page?(controller: 'recipes', action: 'index') == false %>
@@ -30,6 +31,10 @@
     <hr>
     <%= flash[:alert] %>
     <%= flash[:notice] %>
+    <% if user_signed_in? %>
+      <p>Olá, <%= current_user.email %>!</p>
+    <% end %>
+    <br>
 
     <%= yield %>
   </body>
