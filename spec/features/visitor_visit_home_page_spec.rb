@@ -7,6 +7,7 @@ feature 'User visit index page' do
     # Act
     visit root_path
     # Assert
+    expect(page).to_not have_link('Nova Receita')
     expect(page).to have_css('h1', text: 'CookBook')
     expect(page).to have_css('p', text: 'Bem-vindo ao maior livro de receitas online!')
   end

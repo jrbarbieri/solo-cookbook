@@ -1,12 +1,39 @@
 require 'rails_helper'
 
 feature 'User register a recipe' do
+  scenario 'Sign in first' do
+    #Arrange
+    user = User.create!(email: 'email@email.com', password: '123456')
+    recipe_type = RecipeType.create!(name: 'Sobremesa')
+    recipe = Recipe.create!(tittle: 'Cuzcuz', recipe_type: recipe_type,
+                            cuisine: 'Brasileira', difficulty: 'Fácil', cook_time: 60,
+                            ingredients: 'Ovo e açucar', cook_method: 'Misture tudo')
+
+    #Act
+    visit root_path
+    click_on 'Entrar'
+    within('form#new_user') do
+      fill_in 'Email', with: user.email
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+    end
+    click_on 'Nova Receita'
+
+  end
+
   scenario 'successfully' do
     # Arrange
     RecipeType.create(name: 'Sobremesa')
+    user = User.create!(email: 'email@email.com', password: '123456')
 
-    # Act
+    #Act
     visit root_path
+    click_on 'Entrar'
+    within('form#new_user') do
+      fill_in 'Email', with: user.email
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+    end
     click_on 'Nova Receita'
 
     fill_in 'Nome', with: 'Bolo de Chocolate'
@@ -68,9 +95,16 @@ feature 'User register a recipe' do
   scenario 'recipes should not be registered with blank fields' do
     # Arrange
     RecipeType.create!(name: 'Sobremesa')
+    user = User.create!(email: 'email@email.com', password: '123456')
 
-    # Act
+    #Act
     visit root_path
+    click_on 'Entrar'
+    within('form#new_user') do
+      fill_in 'Email', with: user.email
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+    end
     click_on 'Nova Receita'
 
     fill_in 'Nome', with: ''

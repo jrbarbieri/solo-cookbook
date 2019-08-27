@@ -56,9 +56,10 @@ input[type=text]:focus, textarea:focus, input[type=number]:focus  {
 }
 
 .titulo {
+  text-decoration: none;
 	font-family: verdana;
 	text-align: center;
-	letter-spacing: 6px;
+  letter-spacing: 6px;
 }
 
 .botao_voltar { font-family: verdana;
