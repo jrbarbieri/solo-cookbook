@@ -7,7 +7,7 @@ feature 'User register a recipe' do
     recipe_type = RecipeType.create!(name: 'Sobremesa')
     recipe = Recipe.create!(tittle: 'Cuzcuz', recipe_type: recipe_type,
                             cuisine: 'Brasileira', difficulty: 'Fácil', cook_time: 60,
-                            ingredients: 'Ovo e açucar', cook_method: 'Misture tudo')
+                            ingredients: 'Ovo e açucar', cook_method: 'Misture tudo', user: user)
 
     #Act
     visit root_path
@@ -59,10 +59,11 @@ feature 'User register a recipe' do
 
   scenario 'and user can edit the recipe' do
     # Arrange
+    user = User.create!(email: "email@email.com", password: '123456')
     recipe_type = RecipeType.create!(name: 'Sobremesa')
     recipe = Recipe.create(tittle: 'Pudim', recipe_type: recipe_type,
                            cuisine: 'Brasileira', difficulty: 'Fácil', cook_time: 60,
-                           ingredients: 'Ovo e açucar', cook_method: 'Misture tudo')
+                           ingredients: 'Ovo e açucar', cook_method: 'Misture tudo', user: user)
 
     # Act
     visit root_path
@@ -109,7 +110,6 @@ feature 'User register a recipe' do
 
     fill_in 'Nome', with: ''
     select 'Sobremesa', from: 'Tipo de receita'
-    #fill_in 'Tipo de receita', with: ''
     fill_in 'Cozinha', with: ''
     fill_in 'Dificuldade', with: ''
     fill_in 'Tempo de cozimento', with: ''
@@ -119,5 +119,33 @@ feature 'User register a recipe' do
   
     # Assert
     expect(page).to have_content('Campo obrigatório!')
+  end
+
+  scenario 'and user register recipe in his name' do
+    # Arrange
+    RecipeType.create!(name: 'Sobremesa')
+    user = User.create!(email: 'email@email.com', password: '123456')
+
+    #Act
+    visit root_path
+    click_on 'Entrar'
+    within('form#new_user') do
+      fill_in 'Email', with: user.email
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+    end
+    click_on 'Nova Receita'
+    fill_in 'Nome', with: 'Bolo de Chocolate'
+    select 'Sobremesa', from: 'Tipo de receita'
+    fill_in 'Cozinha', with: 'Brasileira'
+    fill_in 'Dificuldade', with: 'Fácil'
+    fill_in 'Tempo de cozimento', with: 30
+    fill_in 'Ingredientes', with: 'Farinha e chocolate'
+    fill_in 'Modo de Preparo', with: 'Misture tudo'
+    click_on 'Enviar'
+
+    # Assert
+    expect(page).to have_css('h1', text: 'Bolo de Chocolate')
+    expect(page).to have_css('p', text: "Receita enviada por #{user.email}.")
   end
 end

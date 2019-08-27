@@ -12,5 +12,7 @@
   <h3>Modo de Preparo</h3>
   <p><%= @recipes.cook_method %></p>
   <br>
+  <p>Receita enviada por <%= @recipes.user.email %>.</p>
+  <br>
   <%= link_to 'Editar Receita', edit_recipe_path %>
   <%= link_to 'Voltar', root_path, class: 'botao_voltar' %>

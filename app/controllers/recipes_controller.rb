@@ -15,6 +15,8 @@ class RecipesController < ApplicationController
 
   def create
     @recipes = Recipe.create(set_params)
+    @recipes.user = current_user
+    
     if @recipes.save
       flash[:notice] = 'Receita criada com sucesso!'
       redirect_to @recipes
@@ -42,7 +44,7 @@ class RecipesController < ApplicationController
 
   def set_params
   	params.require(:recipe).permit(:tittle, :recipe_type_id, :cuisine,
-  								   :difficulty, :cook_time, :ingredients, :cook_method)
+  								   :difficulty, :cook_time, :ingredients, :cook_method, :user)
   end
 
   def set_params_id
