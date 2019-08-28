@@ -7,4 +7,9 @@ class Recipe < ApplicationRecord
   def cook_time_min
     return "#{self.cook_time} minutos"
   end
+
+  def form_date(date)
+    # formatting date: Aug, 31 2007 - 9:55PM
+    date.strftime("%d/%m/%Y às %H:%M")
+  end
 end

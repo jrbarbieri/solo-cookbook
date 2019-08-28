@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    get 'my_recipes', on: :member
   end
+  
   resources :recipe_types, only: %i[show new create]
 end

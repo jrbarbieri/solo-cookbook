@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 
-  before_action :set_params_id, only: %i[show edit]
-  before_action :load_recipe_type, only: %i[new create edit]
+  before_action :set_params_id, only: %i[show edit update]
+  before_action :load_recipe_type, only: %i[new create edit update]
 
   def index
     @recipes = Recipe.all
@@ -29,8 +29,12 @@ class RecipesController < ApplicationController
   def edit; end
 
   def update
-    @recipes = Recipe.update(set_params)
-    redirect_to @recipes
+    if @recipes.update(set_params)
+      redirect_to @recipes
+    else
+      flash.now[:alert] = 'Não foi possível salvar a receita'
+      render :edit
+    end
   end
 
   def search
@@ -38,6 +42,10 @@ class RecipesController < ApplicationController
     if @recipes.empty?
       flash.now[:alert] = 'Nenhuma receita encontrada.'      
     end
+  end
+
+  def my_recipes
+    @recipes = Recipe.where("user_id = #{params[:id]}")
   end
 
   private
