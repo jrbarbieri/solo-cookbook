@@ -5,4 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :recipes
+
+  def recipe_owner?(recipe)
+    if self == recipe.user
+      return true
+    else
+      return nil
+    end
+  end
+
 end

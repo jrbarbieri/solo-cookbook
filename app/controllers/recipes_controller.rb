@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
 
   before_action :set_params_id, only: %i[show edit update]
   before_action :load_recipe_type, only: %i[new create edit update]
+  before_action :authenticate_user!, only: %i[new create edit update]
 
   def index
     @recipes = Recipe.all
@@ -26,7 +27,9 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    redirect_to root_path if !@recipes.owner? current_user
+  end
 
   def update
     if @recipes.update(set_params)

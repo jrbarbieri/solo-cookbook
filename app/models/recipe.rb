@@ -12,4 +12,8 @@ class Recipe < ApplicationRecord
     # formatting date: Aug, 31 2007 - 9:55PM
     date.strftime("%d/%m/%Y às %H:%M")
   end
+
+  def owner?(user)
+    self.user == user
+  end
 end

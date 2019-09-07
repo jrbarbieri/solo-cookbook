@@ -14,5 +14,9 @@
   <br>
   <p>Receita enviada por <%= @recipes.user.email %>.</p>
   <br>
-  <%= link_to 'Editar Receita', edit_recipe_path %>
+
+  <% if user_signed_in? && current_user.recipe_owner?(@recipes) %>
+    <%= link_to 'Editar Receita', edit_recipe_path %>
+  <% end %>
+
   <%= link_to 'Voltar', root_path, class: 'botao_voltar' %>

@@ -66,6 +66,7 @@ feature 'User register a recipe' do
                            ingredients: 'Ovo e açucar', cook_method: 'Misture tudo', user: user)
 
     # Act
+    login_as(user)
     visit root_path
     click_on 'Pudim'
     click_on 'Editar Receita'
@@ -158,6 +159,7 @@ feature 'User register a recipe' do
                              ingredients: 'Ovo e açucar', cook_method: 'Misture tudo', user: user)
   
       # Act
+      login_as(user)
       visit root_path
       click_on 'Pudim'
       click_on 'Editar Receita'
