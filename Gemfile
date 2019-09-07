@@ -26,6 +26,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#FactoryBot
+gem "factory_bot_rails"
+
+#SimpleCov
+gem 'simplecov', require: false, group: :test
+
 # Devise gem for authentication
 gem 'devise'
 

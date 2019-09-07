@@ -148,4 +148,24 @@ feature 'User register a recipe' do
     expect(page).to have_css('h1', text: 'Bolo de Chocolate')
     expect(page).to have_css('p', text: "Receita enviada por #{user.email}.")
   end
+
+  scenario 'and user cannot edit to blank fields' do
+      # Arrange
+      user = User.create!(email: "email@email.com", password: '123456')
+      recipe_type = RecipeType.create!(name: 'Sobremesa')
+      recipe = Recipe.create!(tittle: 'Pudim', recipe_type: recipe_type,
+                             cuisine: 'Brasileira', difficulty: 'Fácil', cook_time: 60,
+                             ingredients: 'Ovo e açucar', cook_method: 'Misture tudo', user: user)
+  
+      # Act
+      visit root_path
+      click_on 'Pudim'
+      click_on 'Editar Receita'
+  
+      fill_in 'Nome', with: ''
+      click_on 'Enviar'
+  
+      # Assert
+      expect(page).to have_content('Não foi possível salvar a receita')
+    end
 end
