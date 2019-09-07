@@ -18,6 +18,7 @@
         <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-buttons' %>
         <%= link_to 'Nova Receita', new_recipe_path, class: 'nav-buttons' %>
         <%= link_to 'Novo Tipo de Receita', new_recipe_type_path, class: 'nav-buttons' %>      
+        <%= link_to 'Nova Lista', new_recipe_list_path, class: 'nav-buttons' %>      
         <%= link_to 'Minhas Receitas', my_recipes_recipe_path(current_user), class: 'nav-buttons' %>      
       <% else %>
         <%= link_to 'Entrar', new_user_session_path, class: 'nav-buttons' %>
